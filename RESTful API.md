@@ -4,6 +4,7 @@
 
 By Guillaume, CTO at Holberton School
 
+![65f4a1dd9c51265f49d0](https://github.com/mohammedchakir/AirBnB_clone/assets/129831433/3374971c-c9b8-4f63-a03f-50a340f7d699)
 
 ## *Concepts:*
 
@@ -73,9 +74,9 @@ By Guillaume, CTO at Holberton School
 -   We strongly encourage you to work together on test cases, so that you don't miss any edge cases
 
 
-More Info
+### More Info
 
-![](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/02078cd7f0573885c85a225c7436584a5afea1f9.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20220418%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220418T185752Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=786972298fa3c9eb7cde458e636d5b6c3e5038d46eb5d101ad2e17f7b5a28cd7)
+![02078cd7f0573885c85a225c7436584a5afea1f9](https://github.com/mohammedchakir/AirBnB_clone/assets/129831433/e75e7e65-129e-487c-a900-8a8b404d59cd)
 
 ### Install Flask
 
@@ -104,7 +105,7 @@ For this project you will fork this [codebase](https://github.com/alexaorrico/A
 
 #### [1. Never fail!]()
 
-![](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/95fedfc947ba610185a59b99b25811acb1bbe360.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20220418%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220418T185752Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=7a382dabb3564c130990b78cb9797a6669bf08e8fd8de9eafe76a7eb4637c4a2)
+![95fedfc947ba610185a59b99b25811acb1bbe360](https://github.com/mohammedchakir/AirBnB_clone/assets/129831433/dff45eea-d8af-4f37-aa26-0237ba080150)
 
 Since the beginning we've been using the `unittest` module, but do you know why `unittests` are so important? Because when you add a new feature, you refactor a piece of code, etc... you want to be sure you didn't break anything.
 
