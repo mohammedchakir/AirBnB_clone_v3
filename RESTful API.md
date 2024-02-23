@@ -892,3 +892,8 @@ guillaume@ubuntu:~/AirBnB_v3$ curl -X POST http://0.0.0.0:5000/api/v1/places_sea
 ...
 guillaume@ubuntu:~/AirBnB_v3$ 
 ```
+
+-----------------
+## Author's 📑:
+
+[MOHAMMED CHAKIR](https://github.com/mohammedchakir) & [SALEH ELMOUINY](https://github.com/Elmouinysaleh)
