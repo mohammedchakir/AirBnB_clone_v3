@@ -815,7 +815,7 @@ To avoid that, improve the `User` object:
 
 - Update the method `to_dict()` of `BaseModel` to remove the `password` key **except when it’s used by `**FileStorage**` to save data to disk**. Tips: default parameters
 - Each time a new `User` object is created or password updated, the password is hashed to a MD5 value
-- In the database for `DBStorage`, the password stored is now hashed to a [MD5]() value
+- In the database for `DBStorage`, the password stored is now hashed to a [MD5](https://docs.python.org/3.4/library/hashlib.html) value
 - In the file for `FileStorage`, the password stored is now hashed to a MD5 value
 - File: `models/base_model.py`, `models/user.py`
   
