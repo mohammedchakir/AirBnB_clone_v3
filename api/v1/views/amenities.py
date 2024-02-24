@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-"""Defines routes for Amenity objects"""
-from flask import Flask, jsonify, abort, request, make_response
+"""This file contains the Amenity module"""
 from api.v1.views import app_views
+from flask import jsonify, abort, request, make_response
 from models import storage
 from models.amenity import Amenity
 
 
-@app_views.route('/amenities', methods=['GET'],
-                 strict_slashes=False)
-def get_amenities():
+@app_views.route('/amenities', methods=['GET'], strict_slashes=False)
+def get_all_amenities():
     """Retrieves the list of all Amenity objects"""
-    amenities = [obj.to_dict() for obj in storage.all(Amenity).values()]
-    return jsonify(amenities)
+    all_list = [obj.to_dict() for obj in storage.all(Amenity).values()]
+    return jsonify(all_list)
 
 
 @app_views.route('/amenities/<string:amenity_id>', methods=['GET'],
@@ -24,22 +23,21 @@ def get_amenity(amenity_id):
     return jsonify(amenity.to_dict())
 
 
-@app_views.route('/amenities/<string:amenity_id>',
-                 methods=['DELETE'],
+@app_views.route('/amenities/<string:amenity_id>', methods=['DELETE'],
                  strict_slashes=False)
-def delete_amenity(amenity_id):
+def del_amenity(amenity_id):
     """Deletes a Amenity object"""
     amenity = storage.get(Amenity, amenity_id)
     if amenity is None:
         abort(404)
-    storage.delete(amenity)
+    amenity.delete()
     storage.save()
-    return jsonify({}), 200
+    return jsonify({})
 
 
-@app_views.route('/amenities', methods=['POST'],
+@app_views.route('/amenities/', methods=['POST'],
                  strict_slashes=False)
-def create_amenity():
+def create_obj_amenity():
     """Creates a Amenity"""
     if not request.get_json():
         return make_response(jsonify({"error": "Not a JSON"}), 400)
@@ -53,7 +51,7 @@ def create_amenity():
 
 @app_views.route('/amenities/<string:amenity_id>', methods=['PUT'],
                  strict_slashes=False)
-def update_amenity(amenity_id):
+def post_amenity(amenity_id):
     """Updates a Amenity object"""
     if not request.get_json():
         return make_response(jsonify({"error": "Not a JSON"}), 400)
