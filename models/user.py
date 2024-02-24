@@ -34,4 +34,3 @@ class User(BaseModel, Base):
         if k == "password":
             v = hashlib.md5(v.encode()).hexdigest()
         super().__setattr__(k, v)
-
