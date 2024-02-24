@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""
-Contains the FileStorage class
-"""
+"""Contains the FileStorage class"""
 
 import json
+import models
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -55,7 +54,7 @@ class FileStorage:
                 jo = json.load(f)
             for key in jo:
                 self.__objects[key] = classes[jo[key]["__class__"]](**jo[key])
-        except Exception as ex:
+        except Exception:
             pass
 
     def delete(self, obj=None):
@@ -71,16 +70,25 @@ class FileStorage:
 
     def get(self, cls, id):
         """Retrieve one object"""
-        if cls in classes.values() and id and type(id) == str:
-            d_obj = self.all(cls)
-            for key, value in d_obj.items():
-                if key.split(".")[1] == id:
-                    return value
+        if cls not in classes.values():
+            return None
+
+        all_cls = models.storage.all(cls)
+        for value in all_cls.values():
+            if (value.id == id):
+                return value
+
         return None
 
     def count(self, cls=None):
-        """Count the number of objects in storage"""
-        database = self.all(cls)
-        if cls in classes.values():
-            database = self.all(cls)
-        return len(database)
+        """Count in storage the number of objects"""
+        all_class = classes.values()
+
+        if not cls:
+            count = 0
+            for item in all_class:
+                count += len(models.storage.all(item).values())
+        else:
+            count = len(models.storage.all(cls).values())
+
+        return count
