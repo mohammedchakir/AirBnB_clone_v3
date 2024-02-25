@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""
-Defines routes for API v1 status endpoint
-"""
+"""Defines routes for API v1 status endpoint"""
+
 from flask import Flask
 from flask import jsonify
 from api.v1.views import app_views

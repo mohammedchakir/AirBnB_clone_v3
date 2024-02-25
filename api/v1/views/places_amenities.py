@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""
-Defines routes for the link between Place objects and Amenity objects
-"""
+"""Defines routes for link between Place and Amenity objects"""
+
 from flask import Flask, jsonify, abort
 from api.v1.views import app_views
 from models import storage
