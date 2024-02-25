@@ -116,7 +116,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get(self):
-        """Test that get retrieves an entry within db is accurately"""
+        """test that get returns a DBStorage object by id"""
         storage = models.storage
         obj = State(name='Michigan')
         obj.save()
@@ -135,7 +135,10 @@ class TestFileStorage(unittest.TestCase):
             storage.get()
 
     def test_count(self):
-        """Test that  count gives the number of entries in the db"""
+        """
+        test that the count function determines
+        instances to a specified class.
+        """
         storage = models.storage
         self.assertIs(type(storage.count()), int)
         self.assertIs(type(storage.count(None)), int)

@@ -102,7 +102,7 @@ class TestDBStorage(unittest.TestCase):
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "not testing db storage")
     def test_get(self):
-        """test that get returns an object of a given class by id."""
+        """test that get returns a DBStorage object by id"""
         storage = models.storage
         obj = State(name='Michigan')
         obj.save()
@@ -121,7 +121,10 @@ class TestDBStorage(unittest.TestCase):
             storage.get()
 
     def test_count(self):
-        """test that count returns the number of objects of a given class."""
+        """
+        test that the count function determines
+        instances to a specified class.
+        """
         storage = models.storage
         self.assertIs(type(storage.count()), int)
         self.assertIs(type(storage.count(None)), int)
