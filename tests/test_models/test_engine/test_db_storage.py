@@ -87,6 +87,15 @@ class TestFileStorage(unittest.TestCase):
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        """test that get returns a DBStorage object by id"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count(self):
+        """test that the count function determines instances
+        to a specified class."""
+
 
 class TestDBStorage(unittest.TestCase):
     """Test the DBStorage class"""
@@ -111,6 +120,8 @@ class TestDBStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             storage.get()
 
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
+                     "not testing db storage")
     def test_count(self):
         """
         test that the count function determines
