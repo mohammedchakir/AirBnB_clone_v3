@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""
-Module for handling City objects through RESTful API
-"""
+"""Module for handling City objects through RESTful API"""
+
 from flask import jsonify, abort, request
 from models import storage
 from models.city import City
