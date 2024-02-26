@@ -11,19 +11,19 @@ from api.v1.views import app_views
                  strict_slashes=False)
 @app_views.route('/amenities/<amenity_id>', methods=['GET'],
                  strict_slashes=False)
-def amenities(amenity_id=None):
+def amenity(amenity_id=None):
     """Retrieves the list of all Amenity objects"""
     amenity_list = []
     if amenity_id is None:
         all_objs = storage.all(Amenity).values()
-        for a in all_objs:
-            amenity_list.append(a.to_dict())
+        for v in all_objs:
+            amenity_list.append(v.to_dict())
         return jsonify(amenity_list)
     else:
-        amenity = storage.get(Amenity, amenity_id)
-        if amenity is None:
+        result = storage.get(Amenity, amenity_id)
+        if result is None:
             abort(404)
-        return jsonify(amenity.to_dict())
+        return jsonify(result.to_dict())
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
