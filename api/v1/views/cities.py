@@ -21,6 +21,7 @@ def get_state_cities(state_id):
         cities_list.append(city.to_dict())
     return jsonify(cities_list)
 
+
 @app_views.route('/cities/<city_id>', methods=['GET'],
                  strict_slashes=False)
 def get_city(city_id):
@@ -53,9 +54,8 @@ def create_city(state_id):
     data = request.get_json(force=True, silent=True)
     if not data:
         abort(400, 'Not a JSON')
-    if 'name' not in data:
+    if "name" not in data:
         abort(400, 'Missing name')
-    data['state_id'] = state_id
     new_city = City(state_id=state.id, **data)
     new_city.save()
     return jsonify(new_city.to_dict()), 201
