@@ -16,7 +16,7 @@ from models.state import State
 from models.user import User
 import json
 import os
-import pep8
+import pycodestyle
 import unittest
 DBStorage = db_storage.DBStorage
 classes = {"Amenity": Amenity, "City": City, "Place": Place,
@@ -32,14 +32,14 @@ class TestDBStorageDocs(unittest.TestCase):
 
     def test_pep8_conformance_db_storage(self):
         """Test that models/engine/db_storage.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
+        pep8s = pycodestyle.StyleGuide(quiet=True)
         result = pep8s.check_files(['models/engine/db_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def test_pep8_conformance_test_db_storage(self):
         """Test tests/test_models/test_db_storage.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
+        pep8s = pycodestyle.StyleGuide(quiet=True)
         result = pep8s.check_files(['tests/test_models/test_engine/\
 test_db_storage.py'])
         self.assertEqual(result.total_errors, 0,
@@ -89,12 +89,13 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get(self):
-        """test that get returns a DBStorage object by id"""
+        """test that get returns object by id to DBStorage"""
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
-        """test that the count function determines instances
-        to a specified class."""
+        """
+        test that count and determines instances to a specified class.
+        """
 
 
 class TestDBStorage(unittest.TestCase):
@@ -102,7 +103,7 @@ class TestDBStorage(unittest.TestCase):
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "not testing db storage")
     def test_get(self):
-        """test that get returns a DBStorage object by id"""
+        """test that get returns object by id to DBStorage"""
         storage = models.storage
         obj = State(name='Michigan')
         obj.save()
@@ -124,8 +125,7 @@ class TestDBStorage(unittest.TestCase):
                      "not testing db storage")
     def test_count(self):
         """
-        test that the count function determines
-        instances to a specified class.
+        test that count and determines instances to a specified class.
         """
         storage = models.storage
         self.assertIs(type(storage.count()), int)
