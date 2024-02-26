@@ -56,12 +56,12 @@ def create_amenity():
                  strict_slashes=False)
 def update_amenity(amenity_id):
     """Updates a Amenity object"""
-    amenity = storage.get(Amenity, amenity_id)
-    if amenity is None:
+    obj = storage.get(Amenity, amenity_id)
+    if obj is None:
         abort(404)
-    data = request.get_json()
+    data = request.get_json(force=True, silent=True)
     if not data:
-        abort(400, 'Not a JSON')
-    amenity.name = data.get("name", amenity.name)
-    amenity.save()
-    return jsonify(amenity.to_dict()), 200
+        abort(400, "Not a JSON")
+    obj.name = data.get("name", obj.name)
+    obj.save()
+    return jsonify(obj.to_dict()), 200
