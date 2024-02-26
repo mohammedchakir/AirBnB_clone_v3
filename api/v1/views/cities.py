@@ -13,14 +13,17 @@ from api.v1.views import app_views
                  strict_slashes=False)
 def get_state_cities(state_id):
     """Retrieves the list of all City objects of a State"""
+    cities_list = []
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
-    cities = [city.to_dict() for city in state.cities]
-    return jsonify(cities)
+    cities = state.cities
+    for city in cities:
+        cities_list.append(city.to_dict())
+    return jsonify(cities_list)
 
-
-@app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['GET'],
+                 strict_slashes=False)
 def get_city(city_id):
     """Retrieves a City object"""
     city = storage.get(City, city_id)
@@ -48,28 +51,27 @@ def create_city(state_id):
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
-    data = request.get_json()
+    data = request.get_json(force=True, silent=True)
     if not data:
         abort(400, 'Not a JSON')
     if 'name' not in data:
         abort(400, 'Missing name')
     data['state_id'] = state_id
-    new_city = City(**data)
+    new_city = City(state_id=state.id, **data)
     new_city.save()
     return jsonify(new_city.to_dict()), 201
 
 
-@app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['PUT'],
+                 strict_slashes=False)
 def update_city(city_id):
     """Updates a City object"""
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
-    data = request.get_json()
+    data = request.get_json(force=True, silent=True)
     if not data:
         abort(400, 'Not a JSON')
-    for key, value in data.items():
-        if key not in ['id', 'state_id', 'created_at', 'updated_at']:
-            setattr(city, key, value)
+    city.name = data.get("name", city.name)
     city.save()
     return jsonify(city.to_dict()), 200
