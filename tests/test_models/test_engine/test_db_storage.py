@@ -121,8 +121,6 @@ class TestDBStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             storage.get()
 
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
-                     "not testing db storage")
     def test_count(self):
         """
         test that count and determines instances to a specified class.
